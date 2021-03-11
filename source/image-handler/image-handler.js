@@ -23,13 +23,13 @@ class ImageHandler {
             const keys = Object.keys(edits);
 
             if (keys.includes('rotate') && edits.rotate === null) {
-                image = sharp(originalImage, { failOnError: false });
+                image = sharp(originalImage, { failOnError: false, animated: true });
             } else {
-                const metadata = await sharp(originalImage, { failOnError: false }).metadata();
+                const metadata = await sharp(originalImage, { failOnError: false, animated: true }).metadata();
                 if (metadata.orientation) {
-                    image = sharp(originalImage, { failOnError: false }).withMetadata({ orientation: metadata.orientation });
+                    image = sharp(originalImage, { failOnError: false, animated: true }).withMetadata({ orientation: metadata.orientation });
                 } else {
-                    image = sharp(originalImage, { failOnError: false }).withMetadata();
+                    image = sharp(originalImage, { failOnError: false, animated: true }).withMetadata();
                 }
             }
 
